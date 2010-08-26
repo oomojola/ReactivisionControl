@@ -1,0 +1,93 @@
+﻿Build started 8/26/2010 5:28:17 PM.
+     1>Project "C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\reacTIVision.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\ext\tinyxml /I..\ext\portmidi\porttime /I..\ext\portmidi\pm_common /I..\ext\libdtouch /I..\common /I..\ext\libfidtrack /I..\ext\oscpack\osc /I..\ext\oscpack /I.\dslib /I.\sdl\include /ZI /nologo /W3 /WX- /Od /Oy- /D _WINDOWS /D WIN32 /D _DEBUG /D _CONSOLE /D _WIN32_WINNT=0x400 /D OSC_HOST_LITTLE_ENDIAN=1 /D NDEBUG /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\common\PortVideoSDL.cpp
+         PortVideoSDL.cpp
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\ext\tinyxml\tinyxml.h(261): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\string.h(188) : see declaration of 'strncpy'
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\common\portvideosdl.cpp(286): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\common\portvideosdl.cpp(294): warning C4244: '=' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\common\portvideosdl.cpp(409): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\common\portvideosdl.cpp(424): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\users\hsiojo\desktop\reactivision-1.4-src\common\portvideosdl.cpp(597): warning C4244: '=' : conversion from 'float' to 'unsigned int', possible loss of data
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Debug\reacTIVision.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\dslib /LIBPATH:.\sdl\lib dsvl.lib SDL.lib SDLmain.lib atlsd.lib msvcrtd.lib ole32.lib libcpmtd.lib ws2_32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB /MANIFEST /ManifestFile:"Debug\reacTIVision.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\reacTIVision.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\reacTIVision.lib" /MACHINE:X86 Debug\reacTIVision.res
+         Debug\reacTIVision.exe.embed.manifest.res
+         Debug\CalibrationEngine.obj
+         Debug\CalibrationGrid.obj
+         Debug\DtouchFinder.obj
+         Debug\FidtrackFinder.obj
+         Debug\FidtrackFinderClassic.obj
+         Debug\FiducialFinder.obj
+         Debug\FiducialObject.obj
+         Debug\FingerObject.obj
+         Debug\FrameThresholder.obj
+         Debug\Main.obj
+         Debug\MidiServer.obj
+         Debug\ObjectAnalyzer.obj
+         Debug\PortVideoSDL.obj
+         Debug\Resources.obj
+         Debug\RingBuffer.obj
+         Debug\SFont.obj
+         Debug\TuioServer.obj
+         Debug\CameraEngine.obj
+         Debug\CameraTool.obj
+         Debug\DSlibCamera.obj
+         Debug\FileCamera.obj
+         Debug\FolderCamera.obj
+         Debug\FontTool.obj
+         Debug\dump_graph.obj
+         Debug\fidtrack120.obj
+         Debug\fidtrackX.obj
+         Debug\segment.obj
+         Debug\threshold.obj
+         Debug\tiled_bernsen_threshold.obj
+         Debug\topologysearch.obj
+         Debug\treeidmap.obj
+         Debug\IpEndpointName.obj
+         Debug\NetworkingUtils.obj
+         Debug\OscOutboundPacketStream.obj
+         Debug\OscPrintReceivedElements.obj
+         Debug\OscReceivedElements.obj
+         Debug\OscTypes.obj
+         Debug\UdpSocket.obj
+         Debug\fiducialdata.obj
+         Debug\fiducialrecognition.obj
+         Debug\ragbuilder.obj
+         Debug\region.obj
+         Debug\regionadjacencygraph.obj
+         Debug\pmutil.obj
+         Debug\pmwin.obj
+         Debug\pmwinmm.obj
+         Debug\portmidi.obj
+         Debug\porttime.obj
+         Debug\ptwinmm.obj
+         Debug\tinystr.obj
+         Debug\tinyxml.obj
+         Debug\tinyxmlerror.obj
+         Debug\tinyxmlparser.obj
+         Debug\FrameEqualizer.obj
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\reacTIVision.exe.embed.manifest" /manifest Debug\reacTIVision.exe.intermediate.manifest
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         reacTIVision.vcxproj -> C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\Debug\reacTIVision.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\reacTIVision.unsuccessfulbuild".
+         Touching "Debug\reacTIVision.lastbuildstate".
+     1>Done Building Project "C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.23

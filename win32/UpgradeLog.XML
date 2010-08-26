@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="reacTIVision">
+</Property><Property Name="Solution File" Value="C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.sln">
+</Property><Property Name="Date" Value="Wednesday, August 25, 2010">
+</Property><Property Name="Time" Value="18:20 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="reacTIVision.sln" Description="File successfully backed up as C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.sln.old">
+</Event><Event ErrorLevel="0" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Converting project file 'C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.vcproj'.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Attribute 'OptimizeForWindows98' of 'VCLinkerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="reacTIVision" Source="reacTIVision.vcproj" Description="MSB8012: $(TargetPath) ('C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\Release\reacTIVision.exe') does not match the Linker's OutputFile property value './reacTIVision.exe' ('C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\./reacTIVision.exe') in project configuration 'Release|Win32'. This may cause your project to build incorrectly. To correct this, please make sure that $(TargetPath) property value matches the value specified in %(Link.OutputFile).">
+</Event><Event ErrorLevel="0" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Done converting to new project file 'C:\Users\hsiojo\Desktop\reacTIVision-1.4-src\win32\reacTIVision.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="reacTIVision" Source="reacTIVision.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="reacTIVision.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="reacTIVision.sln" Description="Converted">
+</Event></UpgradeLog>

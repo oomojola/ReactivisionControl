@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF867F1F-5B62-4C3E-8DD5-EACB1A508824}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\ext\tinyxml;..\ext\portmidi\porttime;..\ext\portmidi\pm_common;..\ext\libdtouch;..\common;..\ext\libfidtrack;..\ext\oscpack\osc;..\ext\oscpack;.\dslib;.\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;_DEBUG;_CONSOLE;_WIN32_WINNT=0x400;OSC_HOST_LITTLE_ENDIAN=1;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>dsvl.lib;SDL.lib;SDLmain.lib;atlsd.lib;msvcrtd.lib;ole32.lib;libcpmtd.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)reacTIVision.exe</OutputFile>
+      <AdditionalLibraryDirectories>.\dslib;.\sdl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <AddModuleNamesToAssembly>%(AddModuleNamesToAssembly)</AddModuleNamesToAssembly>
+      <EmbedManagedResourceFile>%(EmbedManagedResourceFile)</EmbedManagedResourceFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)reacTIVision.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>..\ext\tinyxml;..\ext\portmidi\pm_common;..\ext\portmidi\porttime;..\ext\libdtouch;..\common;..\ext\libfidtrack;..\ext\oscpack\osc;.\dslib;.\sdl\include;..\ext\oscpack;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS;_CONSOLE;WIN32;NDEBUG;_WIN32_WINNT=0x400;OSC_HOST_LITTLE_ENDIAN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>DSVL.lib;SDL.lib;SDLmain.lib;atls.lib;msvcrt.lib;libcpmt.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./reacTIVision.exe</OutputFile>
+      <Version>1.4</Version>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>.\dslib;.\sdl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalManifestDependencies>%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)reacTIVision.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TerminalServerAware>
+      </TerminalServerAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\CalibrationEngine.cpp" />
+    <ClCompile Include="..\common\CalibrationGrid.cpp" />
+    <ClCompile Include="..\common\DtouchFinder.cpp" />
+    <ClCompile Include="..\common\FidtrackFinder.cpp" />
+    <ClCompile Include="..\common\FidtrackFinderClassic.cpp" />
+    <ClCompile Include="..\common\FiducialFinder.cpp" />
+    <ClCompile Include="..\common\FiducialObject.cpp" />
+    <ClCompile Include="..\common\FingerObject.cpp" />
+    <ClCompile Include="..\common\FrameThresholder.cpp" />
+    <ClCompile Include="..\common\Main.cpp" />
+    <ClCompile Include="..\common\MidiServer.cpp" />
+    <ClCompile Include="..\common\ObjectAnalyzer.cpp" />
+    <ClCompile Include="..\common\PortVideoSDL.cpp" />
+    <ClCompile Include="..\common\Resources.c" />
+    <ClCompile Include="..\common\RingBuffer.cpp" />
+    <ClCompile Include="..\common\SFont.c" />
+    <ClCompile Include="..\common\TuioServer.cpp" />
+    <ClCompile Include="..\common\CameraEngine.cpp" />
+    <ClCompile Include="..\common\CameraTool.cpp" />
+    <ClCompile Include="DSlibCamera.cpp" />
+    <ClCompile Include="..\common\FileCamera.cpp" />
+    <ClCompile Include="..\common\FolderCamera.cpp" />
+    <ClCompile Include="..\common\FontTool.cpp" />
+    <ClCompile Include="..\ext\libfidtrack\dump_graph.c" />
+    <ClCompile Include="..\ext\libfidtrack\fidtrack120.c" />
+    <ClCompile Include="..\ext\libfidtrack\fidtrackX.c" />
+    <ClCompile Include="..\ext\libfidtrack\segment.c" />
+    <ClCompile Include="..\ext\libfidtrack\threshold.c" />
+    <ClCompile Include="..\ext\libfidtrack\tiled_bernsen_threshold.c" />
+    <ClCompile Include="..\ext\libfidtrack\topologysearch.c" />
+    <ClCompile Include="..\ext\libfidtrack\treeidmap.cpp" />
+    <ClCompile Include="..\ext\oscpack\ip\IpEndpointName.cpp" />
+    <ClCompile Include="..\ext\oscpack\ip\win32\NetworkingUtils.cpp" />
+    <ClCompile Include="..\ext\oscpack\osc\OscOutboundPacketStream.cpp" />
+    <ClCompile Include="..\ext\oscpack\osc\OscPrintReceivedElements.cpp" />
+    <ClCompile Include="..\ext\oscpack\osc\OscReceivedElements.cpp" />
+    <ClCompile Include="..\ext\oscpack\osc\OscTypes.cpp" />
+    <ClCompile Include="..\ext\oscpack\ip\win32\UdpSocket.cpp" />
+    <ClCompile Include="..\ext\libdtouch\fiducialdata.cpp" />
+    <ClCompile Include="..\ext\libdtouch\fiducialrecognition.cpp" />
+    <ClCompile Include="..\ext\libdtouch\ragbuilder.cpp" />
+    <ClCompile Include="..\ext\libdtouch\region.cpp" />
+    <ClCompile Include="..\ext\libdtouch\regionadjacencygraph.cpp" />
+    <ClCompile Include="..\ext\portmidi\pm_common\pmutil.c" />
+    <ClCompile Include="..\ext\portmidi\pm_win\pmwin.c" />
+    <ClCompile Include="..\ext\portmidi\pm_win\pmwinmm.c" />
+    <ClCompile Include="..\ext\portmidi\pm_common\portmidi.c" />
+    <ClCompile Include="..\ext\portmidi\porttime\porttime.c" />
+    <ClCompile Include="..\ext\portmidi\porttime\ptwinmm.c" />
+    <ClCompile Include="..\ext\tinyxml\tinystr.cpp" />
+    <ClCompile Include="..\ext\tinyxml\tinyxml.cpp" />
+    <ClCompile Include="..\ext\tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\ext\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="..\common\FrameEqualizer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\FrameEqualizer.h" />
+    <ClInclude Include="..\common\CalibrationEngine.h" />
+    <ClInclude Include="..\common\CalibrationGrid.h" />
+    <ClInclude Include="..\common\DtouchFinder.h" />
+    <ClInclude Include="..\common\FidtrackFinder.h" />
+    <ClInclude Include="..\common\FidtrackFinderClassic.h" />
+    <ClInclude Include="..\common\FiducialFinder.h" />
+    <ClInclude Include="..\common\FiducialObject.h" />
+    <ClInclude Include="..\common\FingerObject.h" />
+    <ClInclude Include="..\common\FrameProcessor.h" />
+    <ClInclude Include="..\common\FrameThresholder.h" />
+    <ClInclude Include="..\common\MidiServer.h" />
+    <ClInclude Include="..\common\ObjectAnalyzer.h" />
+    <ClInclude Include="..\common\PortVideoSDL.h" />
+    <ClInclude Include="..\common\RegionProcessor.h" />
+    <ClInclude Include="..\common\Resources.h" />
+    <ClInclude Include="..\common\RingBuffer.h" />
+    <ClInclude Include="..\common\SFont.h" />
+    <ClInclude Include="..\common\TuioServer.h" />
+    <ClInclude Include="..\common\CameraEngine.h" />
+    <ClInclude Include="..\common\CameraTool.h" />
+    <ClInclude Include="DSlibCamera.h" />
+    <ClInclude Include="..\common\FileCamera.h" />
+    <ClInclude Include="..\common\FolderCamera.h" />
+    <ClInclude Include="..\common\FontTool.h" />
+    <ClInclude Include="..\ext\oscpack\ip\IpEndpointName.h" />
+    <ClInclude Include="..\ext\oscpack\osc\MessageMappingOscPacketListener.h" />
+    <ClInclude Include="..\ext\oscpack\ip\NetworkingUtils.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscException.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscHostEndianness.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscOutboundPacketStream.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscPacketListener.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscPrintReceivedElements.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscReceivedElements.h" />
+    <ClInclude Include="..\ext\oscpack\osc\OscTypes.h" />
+    <ClInclude Include="..\ext\oscpack\ip\PacketListener.h" />
+    <ClInclude Include="..\ext\oscpack\ip\TimerListener.h" />
+    <ClInclude Include="..\ext\oscpack\ip\UdpSocket.h" />
+    <ClInclude Include="..\ext\libfidtrack\default_trees.h" />
+    <ClInclude Include="..\ext\libfidtrack\dump_graph.h" />
+    <ClInclude Include="..\ext\libfidtrack\fidtrack120.h" />
+    <ClInclude Include="..\ext\libfidtrack\fidtrackX.h" />
+    <ClInclude Include="..\ext\libfidtrack\floatpoint.h" />
+    <ClInclude Include="..\ext\libfidtrack\segment.h" />
+    <ClInclude Include="..\ext\libfidtrack\threshold.h" />
+    <ClInclude Include="..\ext\libfidtrack\tiled_bernsen_threshold.h" />
+    <ClInclude Include="..\ext\libfidtrack\topologysearch.h" />
+    <ClInclude Include="..\ext\libfidtrack\treeidmap.h" />
+    <ClInclude Include="..\ext\libdtouch\fiducialdata.h" />
+    <ClInclude Include="..\ext\libdtouch\fiducialrecognition.h" />
+    <ClInclude Include="..\ext\libdtouch\list.h" />
+    <ClInclude Include="..\ext\libdtouch\listhash.h" />
+    <ClInclude Include="..\ext\libdtouch\listpool.h" />
+    <ClInclude Include="..\ext\libdtouch\point.h" />
+    <ClInclude Include="..\ext\libdtouch\pool.h" />
+    <ClInclude Include="..\ext\libdtouch\ragbuilder.h" />
+    <ClInclude Include="..\ext\libdtouch\region.h" />
+    <ClInclude Include="..\ext\libdtouch\regionadjacencygraph.h" />
+    <ClInclude Include="..\ext\libdtouch\stack.h" />
+    <ClInclude Include="..\ext\libdtouch\types.h" />
+    <ClInclude Include="..\ext\portmidi\pm_common\pminternal.h" />
+    <ClInclude Include="..\ext\portmidi\pm_common\pmutil.h" />
+    <ClInclude Include="..\ext\portmidi\pm_win\pmwinmm.h" />
+    <ClInclude Include="..\ext\portmidi\pm_common\portmidi.h" />
+    <ClInclude Include="..\ext\portmidi\porttime\porttime.h" />
+    <ClInclude Include="..\ext\tinyxml\tinystr.h" />
+    <ClInclude Include="..\ext\tinyxml\tinyxml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="camera.xml" />
+    <None Include="reacTIVision.ico" />
+    <None Include="reacTIVision.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="reacTIVision.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
