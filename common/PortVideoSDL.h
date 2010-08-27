@@ -52,7 +52,7 @@
 #include "osc/OscPacketListener.h"
 #include "ip/NetworkingUtils.h"
 #include "ip/UdpSocket.h"
-#include "MessageServer.h"
+#include "TuioServer.h"
 
 class PortVideoSDL: public MessageListener,osc::OscPacketListener
 {
@@ -88,7 +88,7 @@ public:
 	void setDisplayMode(DisplayMode mode);
 	DisplayMode getDisplayMode() { return displayMode_; }
 
-	MessageServer * messageServer_;
+	TuioServer * messageServer_;
 
 	static unsigned int current_fps;
 	static bool display_lock;

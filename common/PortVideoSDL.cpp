@@ -31,7 +31,7 @@ int getFrameFromCamera(void *obj) {
 		
 		unsigned char *cameraBuffer = NULL;
 		unsigned char *cameraWriteBuffer = NULL;
-
+		engine->messageServer_->addCameraStatus(true);
 		bool cameraPaused=false;
 		while(engine->running_) {
 			if(!engine->pause_) {
@@ -46,6 +46,7 @@ int getFrameFromCamera(void *obj) {
 					e.type=SDL_USEREVENT;
 					e.user.code=CAMERA_ON_COMPLETE;
 					SDL_PushEvent(&e);*/
+					engine->messageServer_->addCameraStatus(true);
 					SDL_CondSignal(engine->controlCond_);
 					SDL_mutexV(engine->controlMutex_);
 						
@@ -78,6 +79,7 @@ int getFrameFromCamera(void *obj) {
 					e.user.code=CAMERA_OFF_COMPLETE;
 					SDL_PushEvent(&e);*/
 					cameraPaused=true;
+					engine->messageServer_->addCameraStatus(false);
 					SDL_CondSignal(engine->controlCond_);
 					SDL_mutexV(engine->controlMutex_);
 				}

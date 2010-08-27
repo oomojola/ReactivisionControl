@@ -58,6 +58,8 @@ class TuioServer: public MessageServer {
     void addCurSet(int s_id, float x, float y, float X, float Y, float m);
     void addCurAlive(int *id, int size);
     void sendCurMessages();
+	
+	void addCameraStatus(bool status);
 
     ~TuioServer();
 

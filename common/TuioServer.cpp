@@ -106,6 +106,9 @@ void TuioServer::addCurSet(int s_id, float x, float y, float X, float Y, float m
 	curMessages++;
 }
 
+
+
+
 void TuioServer::addCurAlive(int *id, int size) {
 	(*curPacket) << osc::BeginMessage( "/tuio/2Dcur") << "alive";
 	for (int i=0;i<size;i++)
@@ -113,6 +116,8 @@ void TuioServer::addCurAlive(int *id, int size) {
 	(*curPacket) << osc::EndMessage;
 	curMessages++;
 }
+
+
 
 void TuioServer::sendCurMessages() {
 	if (curMessages>0) {
@@ -124,6 +129,17 @@ void TuioServer::sendCurMessages() {
 
 		curMessages = 0;
 	}
+}
+
+void TuioServer::addCameraStatus(bool status){
+	char buf[IP_MTU_SIZE];
+	osc::OutboundPacketStream packet(buf,IP_MTU_SIZE);
+	packet<<osc::BeginBundleImmediate;
+	packet << osc::BeginMessage("/camera/status") << (status?"on":"off")
+		<< osc::EndMessage;
+	transmitSocket->Send(packet.Data(),packet.Size());
+
+
 }
 
 TuioServer::~TuioServer()

@@ -338,7 +338,13 @@ int main(int argc, char* argv[]) {
 	FrameProcessor *calibrator	= NULL;
 
 	if(config.midi) server = new MidiServer(config.midi_config);
-	else server = new TuioServer(config.host,config.port);
+	else {
+
+		TuioServer *tserver = new TuioServer(config.host,config.port);
+		server=tserver;
+		//We need the ViewPort to have access to the server so it can broadcast camera evnets.
+		engine->messageServer_=tserver;
+	}
 	server->setInversion(config.invert_x, config.invert_y, config.invert_a);
 
 	if (!config.dtouch) {
@@ -359,7 +365,6 @@ int main(int argc, char* argv[]) {
 	engine->addFrameProcessor(calibrator);
 
 	engine->run();
-	engine->messageServer_=server;
 		
 	config.display_mode = engine->getDisplayMode();
 	
