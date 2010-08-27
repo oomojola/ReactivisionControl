@@ -105,7 +105,7 @@ unsigned char* DSlibCamera::getFrame()
 			unsigned char r,g,b;
 			int dwidth = 2*width;
 
-			dsvl_vs->CheckoutMemoryBuffer(&g_mbHandle, &buffer);
+			if(FAILED(dsvl_vs->CheckoutMemoryBuffer(&g_mbHandle, &buffer))) return 0;
 			g_Timestamp = dsvl_vs->GetCurrentTimestamp();
 			switch (colour) {
 				case false: {

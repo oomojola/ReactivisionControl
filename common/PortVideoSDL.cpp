@@ -18,6 +18,12 @@
 
 #include "PortVideoSDL.h"
 
+enum  CUSTOM_EVENTS {
+	CAMERA_ON=1,
+	CAMERA_OFF,
+	CAMERA_ON_COMPLETE,
+	CAMERA_OFF_COMPLETE
+};
 // the thread function which contantly retrieves the latest frame
 int getFrameFromCamera(void *obj) {
 
@@ -25,9 +31,25 @@ int getFrameFromCamera(void *obj) {
 		
 		unsigned char *cameraBuffer = NULL;
 		unsigned char *cameraWriteBuffer = NULL;
-		
+
+		bool cameraPaused=false;
 		while(engine->running_) {
 			if(!engine->pause_) {
+				if(cameraPaused){
+					
+					SDL_mutexP(engine->controlMutex_);
+					//Camera is paused but the engine is not paused
+					cameraPaused=false;
+					engine->setupCamera();
+					engine->camera_->startCamera();
+					/*SDL_Event e={0};
+					e.type=SDL_USEREVENT;
+					e.user.code=CAMERA_ON_COMPLETE;
+					SDL_PushEvent(&e);*/
+					SDL_CondSignal(engine->controlCond_);
+					SDL_mutexV(engine->controlMutex_);
+						
+				}
 				//long start_time = PortVideoSDL::currentTime();
 				cameraBuffer = engine->camera_->getFrame();
 				if (cameraBuffer!=NULL) {
@@ -46,15 +68,34 @@ int getFrameFromCamera(void *obj) {
 						engine->error_=true;
 					} else SDL_Delay(1);
 				}
-			} else SDL_Delay(5);
+			} else {
+				//When they pause the camera lets actually let go if the resource 
+				if(!cameraPaused){
+					SDL_mutexP(engine->controlMutex_);
+					engine->teardownCamera();
+					SDL_Event e={0};
+					/*e.type=SDL_USEREVENT;
+					e.user.code=CAMERA_OFF_COMPLETE;
+					SDL_PushEvent(&e);*/
+					cameraPaused=true;
+					SDL_CondSignal(engine->controlCond_);
+					SDL_mutexV(engine->controlMutex_);
+				}
+				
+				SDL_Delay(5);
+			}
 		}
 		return(0);
 }
 
 int getControlMessage(void * obj){
 	PortVideoSDL * engine = (PortVideoSDL*) obj;
-
-
+	//engine->controlSocket_->r   
+		while(engine->running_){
+			
+			engine->controlSocket_->Run();
+			SDL_Delay(10);//Not a CPU intensive Thread
+		}
 	return 0;
 }
 
@@ -83,6 +124,8 @@ void PortVideoSDL::saveBuffer(unsigned char* buffer) {
 void PortVideoSDL::stop() {
 	running_=false;
 	error_=false;
+	//Async Break 
+	controlSocket_->AsynchronousBreak();
 }
 
 // the principal program sequence
@@ -221,8 +264,9 @@ void PortVideoSDL::mainLoop()
 			(*frame)->process(cameraReadBuffer,destBuffer_,displayImage_);
 		long processing_time = currentTime();
 		
-		// update display
-		switch( displayMode_ ) {
+		if(camera_ != 0){
+			// update display
+			switch( displayMode_ ) {
 			case NO_DISPLAY:
 				break;
 			case SOURCE_DISPLAY: {
@@ -234,7 +278,7 @@ void PortVideoSDL::mainLoop()
 				SDL_FillRect(displayImage_, NULL, 0 );
 				SDL_Flip(window_);
 				break;
-			}			
+								 }			
 			case DEST_DISPLAY: {
 				SDL_BlitSurface(destImage_, NULL, window_, NULL);
 				if (help_) drawHelp();
@@ -243,6 +287,7 @@ void PortVideoSDL::mainLoop()
 				SDL_FillRect(displayImage_, NULL, 0 );
 				SDL_Flip(window_);
 				break;
+							   }
 			}
 		}
 
@@ -279,7 +324,6 @@ void PortVideoSDL::frameStatistics(long cameraTime, long processingTime, long to
 	time_t currentTime;
 	time(&currentTime);
 	long diffTime = (long)( currentTime - lastTime_ );
-	
 	if (diffTime >= 1) {
 		current_fps = (int)floor( (frames_ / diffTime) + 0.5f );
 		char caption[24] = "";
@@ -338,9 +382,41 @@ void PortVideoSDL::teardownWindow()
 void PortVideoSDL::process_events()
 {
     SDL_Event event;
+	int cameraFlux=0; //THis is wheter the camera is in flux. while it is we need to not use camera_ as it is intedeterminated
     while( SDL_PollEvent( &event ) ) {
 
         switch( event.type ) {
+			case SDL_USEREVENT:
+				{
+					switch(event.user.code){
+			case CAMERA_OFF:
+				SDL_mutexP(controlMutex_);
+				if(pause_==false){
+				pause_=true;
+				SDL_CondWait(controlCond_,controlMutex_);
+				}
+				SDL_mutexV(controlMutex_);
+				break;
+			case CAMERA_ON:
+				SDL_mutexP(controlMutex_);
+				if(pause_==true){
+				pause_=false;
+				SDL_CondWait(controlCond_,controlMutex_);
+				}
+				SDL_mutexV(controlMutex_);
+				//messageServer_->add
+				break;
+				/*
+			case CAMERA_OFF_COMPLETE:
+				//Broadcast the camera is off.
+
+				break;
+			case CAMERA_ON_COMPLETE:
+				break;
+				*/
+					}
+					break;
+				}
 		case SDL_KEYDOWN:
 			if (error_) { error_ = false; return; }
 			//printf("%d\n",event.key.keysym.sym);
@@ -403,6 +479,7 @@ void PortVideoSDL::process_events()
 			} 
 #endif
 			else if( event.key.keysym.sym == SDLK_p ) {
+				SDL_mutexP(controlMutex_);
 				if (pause_) {
 					pause_=false;
 					char caption[24] = "";
@@ -417,6 +494,8 @@ void PortVideoSDL::process_events()
 					SDL_FillRect(window_,0,0);
 					SDL_Flip(window_);
 				}				
+				SDL_CondWait(controlCond_,controlMutex_);
+				SDL_mutexV(controlMutex_);
 			} else if( event.key.keysym.sym == SDLK_c ) {
 				if (calibrate_) {
 					calibrate_=false;
@@ -439,7 +518,7 @@ void PortVideoSDL::process_events()
 
 			for (frame = processorList.begin(); frame!=processorList.end(); frame++)
 				(*frame)->toggleFlag(event.key.keysym.sym);
-			camera_->control(event.key.keysym.sym);
+			if(camera_)camera_->control(event.key.keysym.sym);
 
 			break;
 		case SDL_QUIT:
@@ -480,6 +559,7 @@ void PortVideoSDL::teardownCamera()
 	camera_->stopCamera();
 	camera_->closeCamera();
 	delete camera_;
+	camera_=0;
 }
 
 void PortVideoSDL::allocateBuffers()
@@ -578,7 +658,18 @@ bool PortVideoSDL::display_lock = false;
  void PortVideoSDL::ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint )
  {
 	 //For now print the messages we recieve.
-		std::cout << "Recieved a message: " << m.AddressPattern() << std::endl;
+		std::cout << "Recieved a message: '" << m.AddressPattern() << "'" <<  std::endl;
+		SDL_Event e={0};
+		e.type=SDL_USEREVENT;
+		std::string pattern(m.AddressPattern());
+		if(pattern == "camera_off"){
+			e.user.code=CAMERA_OFF;	
+		}
+		if(pattern == "camera_on"){
+			e.user.code=CAMERA_ON;
+		}
+		//Push the camera event onto the queue
+		SDL_PushEvent(&e);
  }
 
 PortVideoSDL::PortVideoSDL(const char* name, bool background, const char* cfg,int port)
@@ -593,6 +684,7 @@ PortVideoSDL::PortVideoSDL(const char* name, bool background, const char* cfg,in
 	, height_( HEIGHT )
 	, displayMode_( DEST_DISPLAY )
 	, controlPort_(port)
+	, messageServer_(0)
 {
 	cameraTime_ = processingTime_ = totalTime_ = 0.0f;
 	calibrated_ = !background;
@@ -612,6 +704,8 @@ PortVideoSDL::PortVideoSDL(const char* name, bool background, const char* cfg,in
 	//Control listener is the Camera Port  
 	controlSocket_=new UdpListeningReceiveSocket( IpEndpointName( IpEndpointName::ANY_ADDRESS, controlPort_ ),
            this );
+	controlCond_=SDL_CreateCond();
+	controlMutex_=SDL_CreateMutex();
 	
 
 	for(int i=0;i<256;i++){

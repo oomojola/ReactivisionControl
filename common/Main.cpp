@@ -359,6 +359,7 @@ int main(int argc, char* argv[]) {
 	engine->addFrameProcessor(calibrator);
 
 	engine->run();
+	engine->messageServer_=server;
 		
 	config.display_mode = engine->getDisplayMode();
 	

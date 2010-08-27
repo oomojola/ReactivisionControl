@@ -52,7 +52,7 @@
 #include "osc/OscPacketListener.h"
 #include "ip/NetworkingUtils.h"
 #include "ip/UdpSocket.h"
-
+#include "MessageServer.h"
 
 class PortVideoSDL: public MessageListener,osc::OscPacketListener
 {
@@ -63,7 +63,8 @@ public:
 	
 	void run();
 	void stop();
-
+	SDL_cond * controlCond_;
+	SDL_mutex * controlMutex_;
 	CameraEngine *camera_;
 	unsigned char *cameraBuffer_;
 	const char* camera_config;
@@ -87,6 +88,8 @@ public:
 	void setDisplayMode(DisplayMode mode);
 	DisplayMode getDisplayMode() { return displayMode_; }
 
+	MessageServer * messageServer_;
+
 	static unsigned int current_fps;
 	static bool display_lock;
 
@@ -101,12 +104,13 @@ public:
 #endif
 	}
 	 void ProcessMessage( const osc::ReceivedMessage& m, const IpEndpointName& remoteEndpoint );
+
+	bool setupCamera();
+	void teardownCamera();
 protected:
 	bool setupWindow();
 	void teardownWindow();
 
-	bool setupCamera();
-	void teardownCamera();
 	
 	void initFrameProcessors();
 	
